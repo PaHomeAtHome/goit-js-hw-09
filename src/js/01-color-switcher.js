@@ -5,6 +5,10 @@ const bodyEl = document.querySelector(`body`);
 startButton.addEventListener(`click`, onStartButtonClick)
 stopButton.addEventListener(`click`, onStopButtonClick)
 
+stopButton.disabled = true;
+ 
+let intervalID = null;
+
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
@@ -16,15 +20,17 @@ function changeBodyBackgroundColor() {
 
 function onStartButtonClick(event) {
 
-    const intervalID = setInterval(changeBodyBackgroundColor, 1000)
+    intervalID = setInterval(changeBodyBackgroundColor, 1000)
 
     startButton.disabled = true;
+    stopButton.disabled = false;
 }
 
 
 function onStopButtonClick(event) {
 
-    const intervalID = setInterval(getRandomHexColor(), 1000)
-
-    startButton.disabled = true;
+    clearInterval(intervalID);
+    
+    startButton.disabled = false;
+    stopButton.disabled = true;
 }
