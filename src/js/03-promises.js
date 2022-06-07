@@ -7,38 +7,18 @@ const formEl = document.querySelector(`.form`);
 
 formEl.addEventListener(`submit`, onSubmit)
 
-let position = 0;
-let intervalId = null;
-
 function onSubmit(event) {
   event.preventDefault();
   const delay = parseInt(delayEl.value, 10);
   const step = parseInt(stepEl.value, 10);
   const amount = parseInt(amountEl.value, 10);
 
-  makeTimeout(delay, step, amount)
-}
-
-function makeTimeout(delay, step, amount) {
-  const timeoutId = setTimeout(makeInterval, delay, amount, delay, step)
-}
-
-function makeInterval(amount, delay, step) {
-  callPromise(amount, delay, step)
-  intervalId = setInterval(callPromise, step, amount, delay, step)
-}
-
-function callPromise(amount, delay, step) {
-  const time = delay + step * position;
-    position += 1;
-  if (position > amount) {
-    clearInterval(intervalId)
-    position = 0;
-    return;
+  for (let i = 0; i < amount; i++) {
+    if (i === 0) { setTimeout(createPromise, delay, i + 1, delay); continue}
+    const time = i * step + delay;
+    setTimeout(createPromise, time, i + 1, time)
   }
-  
-  createPromise(position, time)
-} 
+}
   
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
