@@ -8,7 +8,6 @@ const days = timerEl.querySelector(`[data-days]`)
 const hours = timerEl.querySelector(`[data-hours]`)
 const minutes = timerEl.querySelector(`[data-minutes]`)
 const seconds = timerEl.querySelector(`[data-seconds]`)
-const inputEl = document.querySelector(`#datetime-picker`)
 
 let timeChosen = null;
 let intervalID = null;
@@ -35,45 +34,8 @@ const options = {
   },
 };
 
-inputEl.style.padding = `20px`
-inputEl.style.textAlign = `center`
-
 startButton.addEventListener(`click`, onStartButton)
 startButton.disabled = true;
-startButton.style.padding = `20px`
-
-timerEl.style.display = `flex`
-timerEl.style.fontSize = `36px`
-timerEl.style.justifyContent = `center`
-timerEl.style.textAlign = `center`
-
-days.style.padding = `20px` 
-days.style.margin = `40px` 
-days.style.color = `purple`
-days.style.display = `block`
-days.style.backgroundColor = `#DDDDDD`
-days.style.borderRadius = `20px`
-
-hours.style.padding = `20px`
-hours.style.margin = `40px` 
-hours.style.color = `green`
-hours.style.display = `block`
-hours.style.backgroundColor = `#DDDDDD`
-hours.style.borderRadius = `20px`
-
-minutes.style.padding = `20px`
-minutes.style.margin = `40px` 
-minutes.style.color = `blue`
-minutes.style.display = `block`
-minutes.style.backgroundColor = `#DDDDDD`
-minutes.style.borderRadius = `20px`
-
-seconds.style.padding = `20px`
-seconds.style.margin = `40px` 
-seconds.style.color = `red`
-seconds.style.display = `block`
-seconds.style.backgroundColor = `#DDDDDD`
-seconds.style.borderRadius = `20px`
 
 flatpickr("#datetime-picker", options);
 
